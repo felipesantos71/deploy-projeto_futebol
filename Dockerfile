@@ -1,5 +1,11 @@
 # Etapa 1: Build
 FROM ubuntu:latest AS build
+
+FROM maven:3.9.6-eclipse-temurin-17 AS build
+
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+
 RUN apt-get update && apt-get install -y openjdk-17-jdk maven
 
 # Define um diretório de trabalho consistente
