@@ -7,7 +7,6 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.Map;
@@ -37,8 +36,8 @@ public class GlobalExceptionHandler {
                 .body(Map.of("mensagem", erro.getFieldErrors().get(0).getDefaultMessage()));
     }
 
-    @ExceptionHandler(EmailJaCadastradoException.class)
-    public ResponseEntity<Map<String, Object>> handlerEmailJaCadastrado(EmailJaCadastradoException erro) {
+    @ExceptionHandler(NumeroCamisaJaCadastradoException.class)
+    public ResponseEntity<Map<String, Object>> handlerNumeroCamisaJaCadastrado(NumeroCamisaJaCadastradoException erro) {
         return ResponseEntity
                 .status(HttpStatus.CONFLICT)
                 .body(Map.of("mensagem", erro.getMessage()));

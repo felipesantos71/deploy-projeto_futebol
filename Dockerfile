@@ -1,30 +1,22 @@
 # Etapa 1: Build
-FROM maven:3.9.6-eclipse-temurin-17 AS build
+FROM ubuntu:latest AS build
+RUN apt-get update && apt-get install -y openjdk-17-jdk maven
 
-# Garante UTF-8 no ambiente
-ENV LANG C.UTF-8
-ENV LC_ALL C.UTF-8
-
-# Define o diretório de trabalho
+# Define um diretório de trabalho consistente
 WORKDIR /app
 
-# Copia os arquivos do projeto para o contêiner
+# Copia tudo para /app
 COPY . .
 
-# Executa o build do projeto, ignorando testes
-RUN mvn clean package -DskipTests
+# Constrói o projeto
+RUN mvn clean install -DskipTests
 
-# Etapa 2: Runtime
-FROM eclipse-temurin:17-jre
+# Etapa 2: Execução
+FROM openjdk:17-jdk-slim
 
-# Diretório de trabalho no container
-WORKDIR /app
-
-# Expõe a porta da aplicação
 EXPOSE 8080
 
-# Copia o arquivo JAR gerado na etapa de build
+# Copia o .jar gerado do diretório correto
 COPY --from=build /app/target/*.jar app.jar
 
-# Comando de entrada para rodar a aplicação
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT [ "java", "-jar", "app.jar" ]

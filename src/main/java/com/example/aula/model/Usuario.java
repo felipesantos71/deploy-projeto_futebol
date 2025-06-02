@@ -1,14 +1,12 @@
 package com.example.aula.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@Table(name = "tab_jogador")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,22 +15,27 @@ public class Usuario {
     @NotBlank(message = "Nome é obrigatório.")
     private String nome;
 
-    @NotBlank(message = "E-mail é obrigatório.")
-    @Email(message = "Deve ser um e-mail válido.")
-    private String email;
+    @NotBlank(message = "Gênero é obrigatório.")
+    private String sexo;
 
-    @NotBlank(message = "Senha é obrigatória.")
-    @Size(min = 3, message = "A senha deve ter no mínimo 3 caracteres.")
-    private String senha;
+    @NotBlank(message = "Idade é obrigatória.")
+    private String idade;
+
+    @NotBlank(message = "Altura é obrigatória.")
+    private String altura;
+
+    @NotBlank(message = "Peso é obrigatória.")
+    private String peso;
+
+    @NotBlank(message = "Posição é obrigatória.")
+    private String posicao;
+
+    @NotBlank(message = "Número da camisa é obrigatória.")
+    private String numeroCamisa;
+
+
 
     public Usuario() {
-    }
-
-    public Usuario(Long id, String nome, String email, String senha) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
     }
 
     public Long getId() {
@@ -51,19 +54,65 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public @NotBlank(message = "E-mail é obrigatório.") @Email String getEmail() {
-        return email;
+    public @NotBlank(message = "Gênero é obrigatório.") String getSexo() {
+        return sexo;
     }
 
-    public void setEmail(@NotBlank(message = "E-mail é obrigatório.") @Email String email) {
-        this.email = email;
+    public void setSexo(@NotBlank(message = "Gênero é obrigatório.") String sexo) {
+        this.sexo = sexo;
     }
 
-    public @NotBlank(message = "Senha é obrigatória.") @Size(min = 3, message = "A senha deve ter no mínimo 3 caracteres.") String getSenha() {
-        return senha;
+    public @NotBlank(message = "Idade é obrigatória.") String getIdade() {
+        return idade;
     }
 
-    public void setSenha(@NotBlank(message = "Senha é obrigatória.") @Size(min = 3, message = "A senha deve ter no mínimo 3 caracteres.") String senha) {
-        this.senha = senha;
+    public void setIdade(@NotBlank(message = "Idade é obrigatória.") String idade) {
+        this.idade = idade;
+    }
+
+    public @NotBlank(message = "Altura é obrigatória.") String getAltura() {
+        return altura;
+    }
+
+    public void setAltura(@NotBlank(message = "Altura é obrigatória.") String altura) {
+        this.altura = altura;
+    }
+
+    public @NotBlank(message = "Peso é obrigatória.") String getPeso() {
+        return peso;
+    }
+
+    public void setPeso(@NotBlank(message = "Peso é obrigatória.") String peso) {
+        this.peso = peso;
+    }
+
+    public @NotBlank(message = "Posição é obrigatória.") String getPosicao() {
+        return posicao;
+    }
+
+    public void setPosicao(@NotBlank(message = "Posição é obrigatória.") String posicao) {
+        this.posicao = posicao;
+    }
+
+    public @NotBlank(message = "Número da camisa é obrigatória.") String getNumeroCamisa() {
+        return numeroCamisa;
+    }
+
+    public void setNumeroCamisa(@NotBlank(message = "Número da camisa é obrigatória.") String numeroCamisa) {
+        this.numeroCamisa = numeroCamisa;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", sexo='" + sexo + '\'' +
+                ", idade='" + idade + '\'' +
+                ", altura='" + altura + '\'' +
+                ", peso='" + peso + '\'' +
+                ", posicao='" + posicao + '\'' +
+                ", numeroDaCamisa='" + numeroCamisa + '\'' +
+                '}';
     }
 }

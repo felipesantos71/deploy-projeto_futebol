@@ -31,7 +31,7 @@ public class UsuarioController {
         usuarioService.salvar(usuario);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(Map.of("mensagem", "Usuário cadastrado com sucesso."));
+                .body(Map.of("mensagem", "Jogador cadastrado com sucesso."));
     }
 
     @PutMapping
@@ -39,7 +39,7 @@ public class UsuarioController {
         usuarioService.atualizar(usuario);
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(Map.of("mensagem", "Usuário atualizado com sucesso"));
+                .body(Map.of("mensagem", "Jogador atualizado com sucesso"));
     }
 
     @DeleteMapping("/{id}")
@@ -47,6 +47,6 @@ public class UsuarioController {
         usuarioService.excluir(id);
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(Map.of("mensagem", "Usuário excluído com sucesso"));
+                .body(Map.of("mensagem", "Jogador excluído com sucesso"));
     }
 }
